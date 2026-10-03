@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ai_assistant
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai_net
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant_db
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - ai_net
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_automation
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - ai_net
+    depends_on:
+      - postgres
+
+  fastapi_app:
+    build: .
+    container_name: fastapi_backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgresql://admin:password@postgres:5432/ai_assistant
+      - QDRANT_HOST=qdrant
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    volumes:
+      - ./app:/app/app
+    networks:
+      - ai_net
+    depends_on:
+      - postgres
+      - qdrant
+
+networks:
+  ai_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  n8n_data:

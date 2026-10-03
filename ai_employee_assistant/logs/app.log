@@ -1,0 +1,419 @@
+2026-10-03 03:07:50.460 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid username or password
+2026-10-03 03:07:57.270 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid username or password
+2026-10-03 03:15:32.575 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:15:32.578 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:15:32.580 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:16:05.275 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:16:05.278 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:16:05.280 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:19:51.234 | ERROR    | app.main:generic_exception_handler:48 - Unexpected error
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x104dce820>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x104c8b740>
+           └ <SpawnProcess name='SpawnProcess-1' parent=72947 started>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x104c8aae0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=72947 started>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x104d69fd0>, 'target': <bound method Server.run of <uvicorn.server.Server object...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=72947 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=72947 started>
+    │    └ <function subprocess_started at 0x109ed9c70>
+    └ <SpawnProcess name='SpawnProcess-1' parent=72947 started>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8080)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x109f341a0>>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/uvicorn/server.py", line 86, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x109d354e0>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x104d69fd0>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x109f341a0>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8080)>]
+           │           │    └ <function Server.serve at 0x109e997a0>
+           │           └ <uvicorn.server.Server object at 0x109f341a0>
+           └ <function run at 0x109949bc0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x109ee24d0>
+           │      └ <function Runner.run at 0x109949fe0>
+           └ <asyncio.runners.Runner object at 0x109f35400>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14...
+           │    │     └ <cyfunction Loop.run_until_complete at 0x109f31810>
+           │    └ <uvloop.Loop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x109f35400>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x11a5faba0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d950>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x10a25b620>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x11a5faba0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d950>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d950>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x11a5fba10>
+          └ <fastapi.applications.FastAPI object at 0x10a25b620>
+> File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x11a821170>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <fastapi.telemetry._asgi.ExceptionTelemetryMiddleware object at 0x11a5fb8c0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x11a5fba10>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x11a821170>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x11a5fb770>
+          └ <fastapi.telemetry._asgi.ExceptionTelemetryMiddleware object at 0x11a5fb8c0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8080', 'accept': '*/*', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'user-agent': ...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x11a821170>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x10baf8eb0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x11a5fb770>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/middleware/cors.py", line 149, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x11a5fb770>>, sen...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x11a5fb620>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x11a5fb770>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x11a5fb770>>, sen...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x11a72f710>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x11a5fb380>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x11a5fb620>
+          └ <function wrap_app_handling_exceptions at 0x10b9ee4b0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x11a5fb380>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x10ba69590>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x11a5fb380>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x10ba69590>>
+          └ <fastapi.routing.APIRouter object at 0x10ba69590>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │     └ <function APIRoute.handle at 0x10ba317a0>
+          └ APIRoute(path='/rl/stats', name='get_rl_stats', methods=['GET'])
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+                         │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+                         │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+                         └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │    └ <function request_response.<locals>.app at 0x11a6f4eb0>
+          └ APIRoute(path='/rl/stats', name='get_rl_stats', methods=['GET'])
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a8212d0>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x11a822780>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x11a821590>
+          └ <function wrap_app_handling_exceptions at 0x10b9ee4b0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x11a891430>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x11a66d9...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8080), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x11a821590>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x11a822780>
+                     └ <function get_request_handler.<locals>.app at 0x11a6f4d50>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x10ba27b60>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+                 └ <function run_in_threadpool at 0x10b6b8670>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+                 │     │         │        └ functools.partial(<function _run_sync_endpoint at 0x10b979170>, function=<function get_rl_stats at 0x11a6f4bf0>, arguments={'...
+                 │     │         └ <function run_sync at 0x10b66ec40>
+                 │     └ <module 'anyio.to_thread' from '/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/to_thre...
+                 └ <module 'anyio' from '/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/__init__.py'>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+                 └ <function get_async_backend at 0x10b66fed0>
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+                 └ <Future finished exception=ImportError("cannot import name 'RLEngine' from 'app.rl_engine' (/Users/junaid/Documents/final pro...
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+           │          └ {'db': <sqlalchemy.orm.session.Session object at 0x11a8a6350>, 'user': {'username': 'junaid', 'role': 'employee', 'expires': ...
+           └ <function get_rl_stats at 0x11a6f4bf0>
+
+  File "/Users/junaid/Documents/final project/ai_employee_assistant/app/main.py", line 990, in get_rl_stats
+    from app.rl_engine import RLEngine
+         └ <fastapi.applications.FastAPI object at 0x10a25b620>
+
+ImportError: cannot import name 'RLEngine' from 'app.rl_engine' (/Users/junaid/Documents/final project/ai_employee_assistant/app/rl_engine.py). Did you mean: 'rl_engine'?
+2026-10-03 03:28:53.303 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:28:53.307 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:28:53.309 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:46:18.104 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:46:18.107 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:46:18.110 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:48:33.528 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 03:48:33.582 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 03:48:33.588 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 03:48:33.591 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 03:48:33.613 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 03:48:33.627 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 03:48:33.642 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:48:33.644 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:48:33.646 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:48:33.648 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:48:34.008 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:48:34.010 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:48:34.013 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:53:58.230 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 03:53:58.303 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 03:53:58.312 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 03:53:58.315 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 03:53:58.342 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 03:53:58.358 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 03:53:58.376 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:53:58.379 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:53:58.381 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:53:58.384 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:53:58.807 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:53:58.810 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:53:58.813 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 03:55:16.122 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 03:55:16.180 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 03:55:16.187 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 03:55:16.190 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 03:55:16.213 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 03:55:16.229 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 03:55:16.246 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:55:16.249 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 03:55:16.251 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:55:16.253 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 03:55:16.645 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 03:55:16.648 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 03:55:16.651 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 05:22:34.475 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.540 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.541 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.542 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.544 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.544 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:22:34.546 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:32:42.675 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:32:42.696 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 05:32:42.707 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 05:32:42.757 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 05:32:42.764 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 05:32:42.766 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 05:32:42.807 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 05:32:42.821 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 05:32:42.835 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:32:42.838 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:32:42.841 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 05:32:42.843 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 05:32:42.888 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Resolve this ticket before deleting it.
+2026-10-03 05:32:43.248 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 05:32:43.251 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 05:32:43.253 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 05:33:03.799 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:35.137 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:40.307 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:40.308 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:40.308 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:40.309 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:33:40.309 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:36:39.535 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:36:39.555 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 05:36:39.566 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 05:36:39.616 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 05:36:39.642 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 05:36:39.644 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 05:36:39.683 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 05:36:39.695 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 05:36:39.712 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:36:39.714 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 05:36:39.716 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 05:36:39.718 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 05:36:39.758 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Only resolved or escalated tickets can be deleted.
+2026-10-03 05:36:40.099 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 05:36:40.102 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 05:36:40.104 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 05:36:47.514 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:16.879 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.742 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.743 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.743 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.744 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.744 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.744 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:20.747 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 05:37:42.575 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 05:37:42.603 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 05:37:49.043 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 05:37:57.882 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 05:38:13.966 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 05:38:15.958 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Chat session not found
+2026-10-03 06:03:41.229 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:03:41.254 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 06:03:41.269 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 06:03:41.326 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 06:03:41.356 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 06:03:41.358 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 06:03:41.404 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 06:03:41.419 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 06:03:41.438 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:03:41.440 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:03:41.443 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:03:41.445 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:03:41.492 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Only resolved or escalated tickets can be deleted.
+2026-10-03 06:03:41.865 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 06:03:41.869 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 06:03:41.871 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 06:05:03.987 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:05:04.009 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 06:05:04.023 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 06:05:04.076 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 06:05:04.107 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 06:05:04.109 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 06:05:04.153 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 06:05:04.168 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 06:05:04.185 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:05:04.188 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:05:04.190 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:05:04.192 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:05:04.237 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Only resolved or escalated tickets can be deleted.
+2026-10-03 06:05:04.582 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 06:05:04.585 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 06:05:04.588 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 06:12:08.821 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.822 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.822 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.823 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.823 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.823 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:12:08.833 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:45:18.932 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:45:39.876 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:46:00.781 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:46:21.867 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:46:42.817 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:47:03.772 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:47:23.779 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:47:27.045 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Invalid or expired token. Please login again.
+2026-10-03 06:50:30.094 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:50:30.118 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 06:50:30.131 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 06:50:30.183 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 06:50:30.212 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 06:50:30.214 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 06:50:30.260 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 06:50:30.273 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 06:50:30.290 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:50:30.293 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:50:30.295 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:50:30.297 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:50:30.342 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Only resolved or escalated tickets can be deleted.
+2026-10-03 06:50:30.706 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 06:50:30.709 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 06:50:30.711 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 06:55:38.845 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Filter year to a single value to avoid mixing periods, categories or units.
+2026-10-03 06:55:53.325 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Filter year to a single value to avoid mixing periods, categories or units.
+2026-10-03 06:56:12.715 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Filter rme_size_grp to a single value to avoid mixing periods, categories or units.
+2026-10-03 06:56:18.364 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Filter rme_size_grp to a single value to avoid mixing periods, categories or units.
+2026-10-03 06:57:13.066 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose separate revenue and total expense columns.
+2026-10-03 06:57:31.042 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose separate revenue and total expense columns.
+2026-10-03 06:57:45.166 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose separate revenue and total expense columns.
+2026-10-03 06:57:55.595 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 06:57:59.005 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 06:57:59.161 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 06:57:59.370 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 06:57:59.552 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 06:58:12.764 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose separate financial label and amount columns.
+2026-10-03 06:59:47.343 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 06:59:48.339 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:59:48.360 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Only the ticket creator or an admin can delete it.
+2026-10-03 06:59:48.372 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an existing user for assignment.
+2026-10-03 06:59:48.423 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Notification not found.
+2026-10-03 06:59:48.449 | ERROR    | app.main:http_exception_handler:43 - HTTP error 502: The model returned an invalid plan. Please retry; no tasks were saved.
+2026-10-03 06:59:48.451 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Choose an uploaded PDF meeting document.
+2026-10-03 06:59:48.493 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Use a valid ISO date and time.
+2026-10-03 06:59:48.506 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Task not found.
+2026-10-03 06:59:48.520 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:59:48.523 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Ticket not found.
+2026-10-03 06:59:48.524 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:59:48.526 | ERROR    | app.main:http_exception_handler:43 - HTTP error 403: Admin access required. You don't have permission.
+2026-10-03 06:59:48.564 | ERROR    | app.main:http_exception_handler:43 - HTTP error 409: Only resolved or escalated tickets can be deleted.
+2026-10-03 06:59:48.915 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: This image could not be read. Try another PNG, JPEG, or WebP file.
+2026-10-03 06:59:48.917 | ERROR    | app.main:http_exception_handler:43 - HTTP error 404: Conversation not found.
+2026-10-03 06:59:48.919 | ERROR    | app.main:http_exception_handler:43 - HTTP error 401: Not authenticated. Please login first.
+2026-10-03 06:59:52.597 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 06:59:53.138 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:02:52.776 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:01.599 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:08.298 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:08.829 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:08.998 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:09.162 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:03:09.290 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: No rows match this reporting scope.
+2026-10-03 07:04:45.867 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.
+2026-10-03 07:04:59.237 | ERROR    | app.main:http_exception_handler:43 - HTTP error 400: Income and expenditure must contain complete numeric amounts; missing or suppressed figures cannot be assumed zero.

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Employee Assistant — Your intelligent workspace</title>
+    <meta name="theme-color" content="#081322">
+    <meta name="description" content="Enterprise AI assistant with intelligent data analysis, document search, and smart automation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=12">
+</head>
+<body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+        <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.8 6.2L21 12l-6.2 2.8L12 21l-2.8-6.2L3 12l6.2-2.8Z"/><path d="M20 2v4m-2-2h4"/></symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.4-4A8 8 0 1 1 20 11.5Z"/><path d="M8 10h8m-8 4h5"/></symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M9 15v-5m5 5V6m5 9v-7"/></symbol>
+        <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 5h16v5a2 2 0 0 0 0 4v5H4v-5a2 2 0 0 0 0-4Zm11 0v3m0 3v2m0 3v3"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-2 7-2 9h16c0-2-2-2-2-9M9 21h6"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8Zm0 0v5h5M8 12h8m-8 4h6"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+        <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol>
+        <symbol id="i-landscape" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="15.5" cy="8.5" r="1.5"/><path d="m3 17 6-7 5 6 3-3 4 5"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0m-7 7v3m-4 0h8"/></symbol>
+    </defs></svg>
+    <div class="live-wallpaper" aria-hidden="true">
+        <div class="wallpaper-glow glow-one"></div><div class="wallpaper-glow glow-two"></div>
+        <div class="wallpaper-ribbon ribbon-one"></div><div class="wallpaper-ribbon ribbon-two"></div>
+        <div class="wallpaper-stars"></div><div class="wallpaper-horizon"></div>
+        <div class="wallpaper-trail trail-one"></div><div class="wallpaper-trail trail-two"></div>
+    </div>
+    <a class="skip-link" href="#questionInput">Skip to message input</a>
+    <div id="toastContainer" class="toast-container" role="status" aria-live="polite"></div>
+    <div id="loginScreen" class="login-screen">
+        <div class="login-brand"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg> AI Employee Assistant <span>WORKSPACE</span></div>
+        <button class="appearance-trigger login-appearance" type="button" data-appearance-open aria-label="Appearance" aria-controls="appearancePanel" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-landscape"/></svg><span>Appearance</span></button>
+        <div class="login-story">
+            <span class="eyebrow"><span class="tiny-line"></span> A LITTLE MORE CLARITY. A LOT MORE POSSIBILITY.</span>
+            <h1>Your work.<br>Your intelligence.<br><span>A clearer horizon.</span></h1>
+            <p>Bring your documents, data, and ideas into one beautifully connected workspace.</p>
+            <div class="login-capabilities"><span>Document intelligence</span><span>Visual analytics</span><span>Everyday workflows</span></div>
+        </div>
+        <div class="login-card">
+            <div class="login-logo"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></div>
+            <span class="eyebrow">YOUR INTELLIGENT WORKSPACE</span>
+            <h2>Welcome back.</h2>
+            <p class="login-subtitle">A fresh perspective on the work ahead.</p>
+            
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">Sign In</button>
+                <button type="button" class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">Register</button>
+            </div>
+
+            <div class="login-form">
+                <div class="input-group">
+                    <label for="loginUser">Username</label>
+                    <input type="text" id="loginUser" placeholder="Enter username" class="login-input" autocomplete="username">
+                </div>
+                
+                <div class="input-group">
+                    <label for="loginPass">Password</label>
+                    <input type="password" id="loginPass" placeholder="Enter password" class="login-input" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleAuthSubmit()">
+                </div>
+
+                <div id="registerRoleGroup" class="input-group" style="display:none;">
+                    <label for="registerRole">Role</label>
+                    <select id="registerRole" class="login-input">
+                        <option value="employee">Employee</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <button type="button" id="authSubmitBtn" onclick="handleAuthSubmit()" class="login-btn">Sign In</button>
+            </div>
+            
+            <div id="loginError" class="login-error" role="alert"></div>
+            <div class="login-footnote">One workspace. Room for your best work.</div>
+        </div>
+        <div class="login-footer"><span>Designed for focus. Built for possibility.</span><span class="wallpaper-caption">SKYLINE COLLECTION / 01</span></div>
+    </div>
+    <div id="mainApp" style="display:none;">
+        <header class="header">
+            <div class="header-left">
+                <button id="sidebarToggle" type="button" class="icon-btn mobile-menu" aria-label="Open navigation" aria-controls="workspaceSidebar" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+                <div class="logo-icon"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></div>
+                <div>
+                    <div class="header-title">AI Employee Assistant</div>
+                    <div class="header-subtitle">
+                        <span>INTELLIGENT WORKSPACE</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button type="button" class="appearance-trigger" data-appearance-open aria-label="Appearance" aria-controls="appearancePanel" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-landscape"/></svg><span>Appearance</span></button>
+                <button type="button" class="smart-badge routing-btn" title="View response-routing feedback" onclick="openRLModal()"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg> Adaptive Routing</button>
+                <button type="button" class="action-btn notification-button" onclick="switchTab('notifications')">Notifications <span id="notificationCount">0</span></button>
+                <span id="userBadge" class="user-badge">👤 User</span>
+                <button type="button" class="upload-quick" onclick="document.getElementById('fileInput').click()"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg><span>Upload</span></button>
+                <button type="button" onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <button id="sidebarScrim" type="button" class="sidebar-scrim" aria-label="Close navigation" tabindex="-1" hidden></button>
+            <aside class="sidebar" id="workspaceSidebar" aria-label="Workspace navigation">
+                <div class="sidebar-workspace"><div class="workspace-monogram">AI</div><div><strong>My workspace</strong><span>Make room for better work</span></div></div>
+                <div class="sidebar-label">WORKSPACE</div>
+                <nav class="sidebar-nav">
+                    <button type="button" class="nav-btn active" onclick="switchTab('chat')" id="nav-chat">
+                        <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span class="nav-label">Chat & Agent</span><span class="nav-indicator"></span>
+                    </button>
+                    <button type="button" class="nav-btn" onclick="switchTab('tickets')" id="nav-tickets">
+                        <svg class="icon" aria-hidden="true"><use href="#i-ticket"/></svg><span class="nav-label">Tickets</span>
+                    </button>
+                    <button type="button" class="nav-btn" onclick="switchTab('reminders')" id="nav-reminders">
+                        <svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="nav-label">Reminders</span>
+                    </button>
+                    <button type="button" class="nav-btn" onclick="switchTab('tasks')" id="nav-tasks"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><span class="nav-label">My Tasks</span></button>
+                    <button type="button" class="nav-btn" onclick="switchTab('meetings')" id="nav-meetings"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span class="nav-label">Meeting Assistant</span></button>
+                    <button type="button" class="nav-btn" onclick="switchTab('notifications')" id="nav-notifications"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="nav-label">Notifications</span></button>
+                    <button type="button" class="nav-btn" onclick="switchTab('bi')" id="nav-bi">
+                        <svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span class="nav-label">Executive BI Studio</span>
+                    </button>
+                    <button type="button" class="nav-btn admin-only" onclick="switchTab('audit')" id="nav-audit">
+                        <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span class="nav-label">Audit Logs</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-header">
+                        <span class="sidebar-section-title">Chat Sessions</span>
+                        <button type="button" class="new-chat-btn" onclick="startNewChat()" title="Start New Conversation" aria-label="Start new conversation">+</button>
+                    </div>
+                    <input type="text" id="chatSearchInput" placeholder="Filter conversations..." class="sidebar-search" onkeyup="filterChatHistory()">
+                    <div id="chatHistoryList" class="chat-history-list">
+                        <span class="sidebar-empty">No conversations yet</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-header">
+                        <span class="sidebar-section-title">Knowledge & Data</span><button type="button" class="scope-manage" onclick="openFileScope()">Choose files</button>
+                    </div>
+                    <div id="dataFilesList" class="data-files-list">
+                        <span class="sidebar-empty">No datasets uploaded</span>
+                    </div>
+                </div>
+                <button type="button" class="sidebar-upload" onclick="document.getElementById('fileInput').click()">
+                    <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg><span>Upload a document<small>PDF, CSV or Excel</small></span><span class="upload-plus">+</span>
+                </button>
+                <input type="file" id="fileInput" accept=".pdf,.csv,.xlsx,.xls" multiple style="display:none">
+            </aside>
+            <main class="main-container">
+                <div id="tab-chat" class="tab-content active">
+                    <section class="chat-container">
+                        <div class="workspace-toolbar"><div><span class="toolbar-breadcrumb">Workspace</span><span class="breadcrumb-slash">/</span><span>Chat & Agent</span></div><span class="toolbar-note"><span class="tiny-dot"></span> A fresh perspective starts here</span></div>
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Filled from the shared welcome template. -->
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="file-scope-bar">
+                                <label for="fileScopeMode">Use files</label>
+                                <select id="fileScopeMode" onchange="setFileScope(this.value)"><option value="auto">Auto · best match</option><option value="all">All files</option><option value="selected">Selected files</option></select>
+                                <button type="button" class="scope-manage" onclick="openFileScope()" id="fileScopeSummary">Choose files</button>
+                                <button type="button" class="composer-upload" onclick="document.getElementById('fileInput').click()" aria-label="Upload files"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg></button>
+                                <button type="button" class="screenshot-upload" id="attachImageBtn" onclick="document.getElementById('chatImageInput').click()" title="Attach a screenshot or photo" aria-label="Attach a screenshot or photo"><svg class="icon" aria-hidden="true"><use href="#i-landscape"/></svg><span>Attach screenshot / photo</span></button>
+                            </div>
+                            <div id="imageAttachment" class="image-attachment" hidden>
+                                <img id="imageAttachmentPreview" alt="Attached screenshot preview">
+                                <div><strong id="imageAttachmentName"></strong><span>Ask about this image · PNG, JPEG or WebP, up to 8 MB</span></div>
+                                <button type="button" class="icon-btn" onclick="clearChatImage()" aria-label="Remove attached image">×</button>
+                            </div>
+                            <input type="file" id="chatImageInput" accept="image/png,image/jpeg,image/webp" hidden onchange="attachChatImage(this.files[0])">
+                            <div class="input-wrapper" style="display:flex; align-items:center;">
+                                <svg class="icon composer-spark" aria-hidden="true"><use href="#i-spark"/></svg>
+                                <input type="text" id="questionInput" aria-label="Message your AI assistant" placeholder="Ask a question. Explore your data. Start something." onkeydown="if(event.key==='Enter')sendQuestion()">
+                                <button type="button" class="mic-btn icon-btn" id="micBtn" onclick="toggleVoiceInput()" title="Voice Dictation" aria-label="Voice dictation"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></button>
+                                <button type="button" class="send-btn" id="sendBtn" onclick="sendQuestion()" title="Send Message">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                </button>
+                            </div>
+                            <div class="composer-footer"><span>Bring a question. Leave with clarity.</span><span>AI can make mistakes. Review important results.</span></div>
+                        </div>
+                    </section>
+                </div>
+                <div id="tab-tickets" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">🎫 Support Tickets</h3>
+                            <button type="button" onclick="showNewTicket()" class="action-btn">+ New Ticket</button>
+                        </div>
+
+                        <div id="newTicketForm" style="display:none;" class="form-card">
+                            <input type="text" id="ticketSubject" placeholder="Ticket Subject" class="form-input">
+                            <textarea id="ticketDesc" placeholder="Describe the issue in detail..." class="form-textarea"></textarea>
+                            <select id="ticketPriority" class="form-select">
+                                <option value="low">Priority: Low</option>
+                                <option value="medium" selected>Priority: Medium</option>
+                                <option value="high">Priority: High</option>
+                            </select>
+                            <button type="button" onclick="createTicket()" class="action-btn">Submit Support Ticket</button>
+                        </div>
+
+                        <div id="ticketList" class="item-list"></div>
+                    </div>
+                </div>
+                <div id="tab-tasks" class="tab-content">
+                    <section class="panel workflow-panel"><div class="panel-header"><h2 class="panel-title">My Tasks</h2><button type="button" class="action-btn" onclick="loadTasks()">Refresh</button></div>
+                    <p class="workflow-hint">Track your own work. Due tasks appear in Notifications alongside reminders.</p>
+                    <form class="form-card" onsubmit="event.preventDefault();createPersonalTask(this)">
+                        <label>Task title<input id="taskTitle" class="form-input" maxlength="240" required></label>
+                        <label>Details<textarea id="taskDetails" class="form-textarea"></textarea></label>
+                        <label>Deadline (optional)<input id="taskDue" type="datetime-local" class="form-input"></label>
+                        <button type="submit" class="action-btn">Add task</button>
+                    </form><div id="taskList" class="item-list"></div></section>
+                </div>
+                <div id="tab-meetings" class="tab-content">
+                    <section class="panel workflow-panel"><div class="panel-header"><h2 class="panel-title">Meeting Assistant</h2></div>
+                    <p class="workflow-hint">Paste meeting notes, load a text file, or choose an uploaded PDF. Review decisions and suggested tasks before saving them to your list.</p>
+                    <form class="form-card" onsubmit="event.preventDefault();analyzeMeeting(this)">
+                        <label>Meeting notes<textarea id="meetingNotes" class="form-textarea" maxlength="50000" placeholder="What was discussed? What was agreed? Who will follow up?"></textarea></label>
+                        <label>Load text notes<input type="file" accept=".txt,.md,text/plain" onchange="loadMeetingText(this.files[0])"></label>
+                        <label>Or use an uploaded PDF<select id="meetingPdf" class="form-select"><option value="">No PDF selected</option></select></label>
+                        <button type="submit" class="action-btn">Summarize & extract tasks</button>
+                    </form><div id="meetingResult" aria-live="polite"></div></section>
+                </div>
+                <div id="tab-notifications" class="tab-content">
+                    <section class="panel workflow-panel"><div class="panel-header"><h2 class="panel-title">Notifications</h2><button type="button" class="action-btn" onclick="markAllNotificationsRead()">Mark all as read</button></div>
+                    <p class="workflow-hint">Ticket updates and due tasks/reminders. Alerts refresh while this workspace is open; missed deadlines are checked when you return.</p>
+                    <button type="button" class="action-btn" onclick="enableDesktopAlerts()">Enable desktop alerts</button>
+                    <div id="notificationList" class="item-list" aria-live="polite"></div></section>
+                </div>
+                <div id="tab-reminders" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">🔔 Task Reminders</h3>
+                            <button type="button" onclick="showNewReminder()" class="action-btn">+ New Reminder</button>
+                        </div>
+
+                        <div id="newReminderForm" style="display:none;" class="form-card">
+                            <input type="text" id="reminderMsg" placeholder="What do you need to be reminded about?" class="form-input">
+                            <input type="datetime-local" id="reminderDue" class="form-input">
+                            <button type="button" onclick="createReminder()" class="action-btn">Set Task Reminder</button>
+                        </div>
+
+                        <div id="reminderList" class="item-list"></div>
+                    </div>
+                </div>
+                <div id="tab-bi" class="tab-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+                        <div>
+                            <h2 style="font-size:22px; font-weight:700; color:var(--text-light); margin:0;">📊 Executive BI Studio</h2>
+                            <p style="font-size:13px; color:var(--text-muted); margin:4px 0 0 0;">Real-time Dataset Visual Analytics & Executive Deck Generation</p>
+                        </div>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                            <select id="biDatasetSelect" onchange="onBIDatasetChange()" style="background:rgba(15,23,42,0.9); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:8px 14px; border-radius:8px; font-size:13px; font-weight:600; outline:none; cursor:pointer;">
+                                <option value="">📂 Loading Datasets...</option>
+                            </select>
+                            <button type="button" onclick="triggerPDFExport()" class="quick-action-btn" style="background:var(--accent-emerald); color:#fff; padding:8px 14px; border-radius:8px; border:none; font-weight:600; cursor:pointer;">
+                                📄 Export PDF Briefing
+                            </button>
+                            <button type="button" onclick="triggerPPTExport()" class="quick-action-btn" style="background:var(--accent-indigo); color:#fff; padding:8px 14px; border-radius:8px; border:none; font-weight:600; cursor:pointer;">
+                                📊 Export PPTX Deck
+                            </button>
+                            <select id="biPrevYearSelect" onchange="runVarianceAnalysis()" style="background:rgba(15,23,42,0.9); color:#fff; border:1px solid rgba(255,255,255,0.2); padding:8px 10px; border-radius:8px; font-size:12px; font-weight:600; outline:none; cursor:pointer; display:none;"></select>
+                            <span id="biVsLabel" style="font-size:12px; color:var(--text-muted); font-weight:600; display:none;">vs</span>
+                            <select id="biCurrYearSelect" onchange="runVarianceAnalysis()" style="background:rgba(15,23,42,0.9); color:#fff; border:1px solid rgba(255,255,255,0.2); padding:8px 10px; border-radius:8px; font-size:12px; font-weight:600; outline:none; cursor:pointer; display:none;"></select>
+                            <button type="button" onclick="runVarianceAnalysis()" class="quick-action-btn" style="background:var(--secondary); color:#fff; padding:8px 14px; border-radius:8px; border:none; font-weight:600; cursor:pointer;">
+                                📈 Period Variance
+                            </button>
+                            <button type="button" onclick="runBenfordWatchdog()" class="quick-action-btn" style="background:var(--accent-cyan); color:#0f172a; padding:8px 14px; border-radius:8px; border:none; font-weight:600; cursor:pointer;">
+                                🕵️ Fraud Audit
+                            </button>
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-bottom:24px;">
+                        <div class="bi-card shimmer-card">
+                            <div class="bi-card-icon" style="background:rgba(6,182,212,0.15); border-color:rgba(6,182,212,0.3); color:var(--accent-cyan);">💰</div>
+                            <div>
+                                <div class="bi-card-lbl">SELECTED MEASURE TOTAL</div>
+                                <div id="bi-kpi-revenue" class="bi-card-val" style="color:var(--accent-cyan);">$0.00</div>
+                            </div>
+                        </div>
+                        <div class="bi-card shimmer-card">
+                        <div class="bi-card-icon" style="background:rgba(14,165,233,0.15); border-color:rgba(56,189,248,0.3); color:var(--secondary);">📊</div>
+                            <div>
+                                <div class="bi-card-lbl">TOTAL RECORDS AUDITED</div>
+                                <div id="bi-kpi-records" class="bi-card-val">0 Records</div>
+                            </div>
+                        </div>
+                        <div class="bi-card shimmer-card">
+                            <div class="bi-card-icon" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.3); color:var(--accent-emerald);">🛡️</div>
+                            <div>
+                                <div class="bi-card-lbl">AUDIT RISK STATUS</div>
+                                <div id="bi-kpi-risk" class="bi-card-val" style="color:var(--accent-emerald);">No Active Datasets</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="biSolutionsBox" style="background:rgba(15, 23, 42, 0.75); border:1px solid rgba(6, 182, 212, 0.3); border-radius:12px; padding:16px 20px; margin-bottom:24px; display:none;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                            <div style="font-size:12px; font-weight:700; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; gap:6px;">
+                                <span>💡</span> <span>Client Forensic Action Plan & Remediation</span>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button type="button" onclick="cleanDatasetOutliers()" class="quick-action-btn" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#f87171; font-size:11px; padding:4px 10px; border-radius:6px; font-weight:600; cursor:pointer;">
+                                    🧹 Clean & Winsorize Outliers
+                                </button>
+                                <button type="button" onclick="printRemediationBriefing()" class="quick-action-btn" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.4); color:var(--accent-cyan); font-size:11px; padding:4px 10px; border-radius:6px; font-weight:600; cursor:pointer;">
+                                    📥 Download Remediation Report
+                                </button>
+                            </div>
+                        </div>
+                        <div id="biSolutionsList" style="display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--text-main);"></div>
+                    </div>
+                    <div style="background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.08); padding:24px; border-radius:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+                            <h3 style="font-size:18px; font-weight:700; color:var(--text-light); margin:0;" id="bi-chart-title">Executive Analytics Visualization</h3>
+                            <div style="display:flex; gap:10px; align-items:center;">
+                                <button type="button" onclick="changeBIChart('line')" class="quick-action-btn" style="font-size:13px; background:rgba(99,102,241,0.2); border:1px solid var(--primary); color:#fff; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer;">📈 Line Graph</button>
+                                <button type="button" onclick="changeBIChart('bar')" class="quick-action-btn" style="font-size:13px; background:rgba(6,182,212,0.2); border:1px solid var(--accent-cyan); color:#fff; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer;">📊 Bar Chart</button>
+                                <button type="button" onclick="changeBIChart('pie')" class="quick-action-btn" style="font-size:13px; background:rgba(16,185,129,0.2); border:1px solid var(--accent-emerald); color:#fff; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer;">🥧 Pie Chart</button>
+                                <button type="button" onclick="toggleChartTheme()" id="themeToggleBtn" class="quick-action-btn" style="font-size:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer;">🎨 High-Contrast Light</button>
+                            </div>
+                        </div>
+                        <div id="biCalculationDetails" class="calculation-panel"></div>
+                        <div id="biProfitLoss" class="calculation-panel"></div>
+                    <div id="biChartContainer" style="min-height:550px; display:flex; align-items:center; justify-content:center; width:100%;">
+                            <div style="color:var(--text-muted); text-align:center; padding:60px;">
+                                <div style="font-size:42px; margin-bottom:12px;">📊</div>
+                                <div style="font-size:15px; color:var(--text-main);">Click any chart button above to load live executive visualizations.</div>
+                                <div style="font-size:13px; color:var(--text-muted); margin-top:4px;">Supports Line Graphs, Bar Charts, Pie Charts, Benford Fraud Audits & Variance Analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-audit" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header" style="flex-wrap:wrap; gap:12px;">
+                            <div>
+                                <h3 class="panel-title">🛡️ Enterprise Audit & Governance Desk</h3>
+                                <p style="font-size:12px; color:var(--text-muted); margin-top:2px;">SOX & ISO 27001 compliant prompt lineage, tool execution history, and PII inspection</p>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <button type="button" onclick="exportAuditLogsCSV()" class="action-btn" style="background:linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan));">📥 Export CSV Audit Trail</button>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:12px; margin-bottom:16px;">
+                            <input type="text" id="auditSearchInput" placeholder="Filter logs by user, action, or dataset..." class="form-input" style="flex:1;" onkeyup="filterAuditLogs()">
+                        </div>
+
+                        <div id="auditList" class="item-list"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div id="rlModal" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.85); backdrop-filter:blur(16px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:var(--gradient-card); border:1px solid var(--glass-border); border-radius:16px; padding:28px; max-width:600px; width:100%; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 style="font-size:20px; font-weight:800; color:var(--text-light); margin:0; display:flex; align-items:center; gap:8px;">
+                    <span>🧠</span> <span>Response Routing Feedback</span>
+                </h3>
+                <button type="button" onclick="closeRLModal()" style="background:none; border:none; color:var(--text-muted); font-size:20px; cursor:pointer;">❌</button>
+            </div>
+            <div style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
+                Feedback scores used to compare response modes across different types of requests:
+            </div>
+            <div id="rlPolicyContainer" style="display:flex; flex-direction:column; gap:10px; max-height:300px; overflow-y:auto;"></div>
+            <div style="margin-top:20px; text-align:right;">
+                <button type="button" onclick="closeRLModal()" class="action-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <template id="welcomeTemplate">
+        <div class="welcome-message">
+            <div class="welcome-hero">
+                <div class="hero-copy">
+                    <span class="eyebrow"><span class="tiny-line"></span> YOUR WORK, WITH A FRESH PERSPECTIVE</span>
+                    <h1>Big ideas.<br><span>Clearer answers.</span></h1>
+                    <p>A thoughtful partner for your documents, data, and everything on your to-do list.</p>
+                    <div class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg> Made for your next good idea</div>
+                </div>
+                <div class="orb-scene" aria-hidden="true"><div class="orb-orbit orbit-one"></div><div class="orb-orbit orbit-two"></div><div class="orb-sphere"></div><div class="orb-moon"></div><span class="orbit-label">A NEW PERSPECTIVE</span></div>
+            </div>
+            <div class="welcome-section-heading"><h2>Where shall we start?</h2><span>Choose a starting point, or ask below</span></div>
+            <div class="welcome-grid">
+                <button type="button" class="hero-card" onclick="askPrompt('Analyze the sales revenue dataset and plot the top industries')"><span class="hero-card-top"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span class="card-number">01</span></span><span class="hero-card-title">Explore your data</span><span class="hero-card-desc">Turn rows and numbers into a clearer picture.</span><span class="card-link">Data analytics <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+                <button type="button" class="hero-card" onclick="askPrompt('What is the company policy on leave and expenses?')"><span class="hero-card-top"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><span class="card-number">02</span></span><span class="hero-card-title">Find the answer</span><span class="hero-card-desc">Get to the useful part of your company documents.</span><span class="card-link">Document search <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+                <button type="button" class="hero-card" onclick="askPrompt('Draft an email about the project presentation')"><span class="hero-card-top"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span class="card-number">03</span></span><span class="hero-card-title">Find the right words</span><span class="hero-card-desc">Give your next email a thoughtful first draft.</span><span class="card-link">Email assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+            </div>
+            <div class="welcome-secondary"><span>ALSO IN YOUR WORKSPACE</span><button type="button" onclick="askPrompt('Perform a Benford Law Forensic Fraud Audit on the transaction ledger and plot actual vs expected leading digit distribution')"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> Benford audit <span>↗</span></button><button type="button" onclick="askPrompt('Create a support ticket for database maintenance')"><svg class="icon" aria-hidden="true"><use href="#i-ticket"/></svg> Support desk <span>↗</span></button></div>
+        </div>
+    </template>
+    <section id="appearancePanel" class="appearance-panel" aria-label="Workspace appearance" hidden>
+        <div class="appearance-heading"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Choose your atmosphere</h2></div><button type="button" class="icon-btn" id="appearanceClose" aria-label="Close appearance"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+        <p>A quieter canvas for a busy mind.</p>
+        <div class="wallpaper-options" role="group" aria-label="Background wallpaper">
+            <button type="button" data-wallpaper="skyline" aria-pressed="true"><span class="wallpaper-preview preview-skyline"></span><span>Skyline</span><small>Open & luminous</small></button>
+            <button type="button" data-wallpaper="aurora" aria-pressed="false"><span class="wallpaper-preview preview-aurora"></span><span>Aurora</span><small>Fluid & atmospheric</small></button>
+            <button type="button" data-wallpaper="midnight" aria-pressed="false"><span class="wallpaper-preview preview-midnight"></span><span>Midnight</span><small>Quiet & focused</small></button>
+        </div>
+        <label class="motion-setting" for="motionToggle"><span><strong>Live motion</strong><small id="motionHint">Moving sky light, flowing ribbons and gliding trails</small></span><input type="checkbox" id="motionToggle" role="switch" checked></label>
+        <div class="appearance-footnote">Your atmosphere is saved on this device.</div>
+    </section>
+    <dialog id="fileScopeDialog" aria-labelledby="fileScopeTitle">
+        <div class="file-dialog-header"><div><h2 id="fileScopeTitle">Choose your working files</h2><p>Choose the evidence for Chat & Agent. BI Studio keeps its own dataset selector.</p></div><button type="button" class="icon-btn" onclick="document.getElementById('fileScopeDialog').close()" aria-label="Close file selection">✕</button></div>
+        <div class="file-dialog-actions"><button type="button" class="action-btn" onclick="setFileScope('all')">Use all files</button><button type="button" class="action-btn secondary" onclick="clearFileScope()">Clear selection</button><button type="button" class="action-btn secondary" onclick="document.getElementById('fileInput').click()">Upload files</button></div>
+        <label class="file-search-label" for="fileScopeSearch">Find a file</label><input id="fileScopeSearch" class="form-input" type="search" placeholder="Search by filename…" oninput="renderFileScope()">
+        <div id="fileScopeList" class="file-scope-list"></div>
+        <div class="file-dialog-footer"><p id="fileScopeHint" role="status"></p><button type="button" class="action-btn" onclick="document.getElementById('fileScopeDialog').close()">Done</button></div>
+    </dialog>
+    <dialog id="ticketDialog" class="workflow-dialog">
+        <div class="panel-header"><h2 id="ticketDialogTitle" class="panel-title">Ticket conversation</h2><button type="button" class="icon-btn" onclick="document.getElementById('ticketDialog').close()" aria-label="Close ticket">×</button></div>
+        <div id="ticketConversation"></div>
+        <form class="form-card" onsubmit="event.preventDefault();replyToTicket(this)"><label>Reply<textarea id="ticketReply" class="form-textarea" required maxlength="10000"></textarea></label><button type="submit" class="action-btn">Send reply</button></form>
+    </dialog>
+    <script src="/static/appearance.js?v=6"></script>
+    <script src="/static/file-scope.js?v=1"></script>
+    <script src="/static/app.js?v=11"></script>
+    <script src="/static/chat-images.js?v=1"></script>
+    <script src="/static/workflows.js?v=6"></script>
+</body>
+</html>

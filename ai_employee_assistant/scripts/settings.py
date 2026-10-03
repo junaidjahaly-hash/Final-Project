@@ -1,0 +1,12 @@
+from config import settings as _config
+
+# Re‑export the configuration variables expected by llm_router
+OLLAMA_HOST = _config.OLLAMA_HOST
+CLOUD_MODEL = _config.CLOUD_MODEL
+LOCAL_MODEL = _config.LOCAL_MODEL
+LLM_CACHE_SIZE = _config.LLM_CACHE_SIZE
+LLM_MAX_TOKENS = _config.LLM_MAX_TOKENS
+LLM_TIMEOUT_SECONDS = _config.LLM_TIMEOUT_SECONDS
+CLOUD_FIRST_FOR_MAIN = _config.CLOUD_FIRST_FOR_MAIN
+GEMINI_FALLBACK_ENABLED = _config.GEMINI_FALLBACK_ENABLED
+GEMINI_MODEL = _config.GEMINI_MODEL
